@@ -1,0 +1,9 @@
+<% content_for(:title) { t("ory.consent.title") } %>
+
+<%= render Ory::CardComponent.new do |card| %>
+  <% card.with_header(title: t("ory.consent.title")) %>
+
+  <% card.with_body do %>
+    <p>Consent challenge: <%= @consent_challenge %></p>
+  <% end %>
+<% end %>

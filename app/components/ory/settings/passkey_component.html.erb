@@ -1,0 +1,26 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-Settings__Section Ory-Settings__Section--passkey" data-controller="ory-passkey">
+  <% hidden_passkey_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <div class="Ory-Settings__SectionContent">
+    <div class="Ory-Settings__SectionHeader">
+      <h3 class="Ory-Settings__SectionTitle"><%= I18n.t("ory.settings.passkey.title") %></h3>
+      <p class="Ory-Settings__SectionDescription"><%= I18n.t("ory.settings.passkey.description") %></p>
+    </div>
+
+    <% if trigger_node %>
+      <div class="Ory-Settings__PasskeyTrigger">
+        <%= render Ory::NodeComponent.new(node: trigger_node) %>
+      </div>
+    <% end %>
+
+    <% if remove_nodes.any? %>
+      <div class="Ory-Settings__PasskeyDevices">
+        <% remove_nodes.each do |node| %>
+          <%= render Ory::NodeComponent.new(node: node) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</form>

@@ -1,0 +1,18 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-Settings__Section Ory-Settings__Section--oidc">
+  <% hidden_oidc_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <div class="Ory-Settings__SectionContent">
+    <div class="Ory-Settings__SectionHeader">
+      <h3 class="Ory-Settings__SectionTitle"><%= I18n.t("ory.settings.oidc.title") %></h3>
+      <p class="Ory-Settings__SectionDescription"><%= I18n.t("ory.settings.oidc.description") %></p>
+    </div>
+
+    <div class="Ory-Settings__OidcProviders">
+      <% provider_nodes.each do |node| %>
+        <%= render Ory::NodeComponent.new(node: node) %>
+      <% end %>
+    </div>
+  </div>
+</form>

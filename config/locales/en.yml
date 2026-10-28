@@ -1,0 +1,51 @@
+en:
+  ory:
+    login:
+      title: "Sign In"
+      register_link: "Don't have an account? Sign up"
+      choose_method: "Choose another method"
+      logout: "Log out"
+    registration:
+      title: "Create Account"
+      login_link: "Already have an account? Sign in"
+      choose_method: "Choose another method"
+    recovery:
+      title: "Account Recovery"
+      description: "Enter your email to receive a recovery link."
+      login_link: "Remember your credentials? Sign in"
+    verification:
+      title: "Verify Your Account"
+      description: "Enter the code sent to your email."
+    settings:
+      title: "Account Settings"
+      profile:
+        title: "Profile"
+        description: "Update your personal information."
+      password:
+        title: "Password"
+        description: "Change your password."
+      totp:
+        title: "Authenticator App"
+        description: "Add a TOTP authenticator app for two-factor authentication."
+      webauthn:
+        title: "Security Keys"
+        description: "Manage your hardware security keys."
+      passkey:
+        title: "Passkeys"
+        description: "Manage your passkeys."
+      lookup_secret:
+        title: "Recovery Codes"
+        description: "Generate backup recovery codes."
+      oidc:
+        title: "Social Connections"
+        description: "Link or unlink social sign-in providers."
+    consent:
+      title: "Grant Access"
+    error:
+      title: "An Error Occurred"
+    logout:
+      title: "Logging Out..."
+    messages:
+      flow_expired: "This flow has expired. Please try again."
+    divider:
+      or: "or"

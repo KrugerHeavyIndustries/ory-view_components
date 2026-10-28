@@ -1,0 +1,5 @@
+<div class="Ory-Messages">
+  <% visible_messages.each do |message| %>
+    <%= render Ory::MessageComponent.new(message: message) %>
+  <% end %>
+</div>

@@ -1,0 +1,43 @@
+<% content_for(:title) { t("ory.settings.title") } %>
+
+<div class="Ory-Settings">
+  <h1 class="Ory-Settings__Title"><%= t("ory.settings.title") %></h1>
+
+  <%= render Ory::MessagesComponent.new(messages: @flow_container.messages) %>
+
+  <%# Script nodes (WebAuthn) must be rendered at the top level %>
+  <% Ory::NodeHelper.script_nodes(@flow_container.nodes).each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <%# Profile section %>
+  <%= render Ory::Settings::SectionComponent.new(
+    flow: @flow_container.flow,
+    group: "profile",
+    title: t("ory.settings.profile.title"),
+    description: t("ory.settings.profile.description")
+  ) %>
+
+  <%# Password section %>
+  <%= render Ory::Settings::SectionComponent.new(
+    flow: @flow_container.flow,
+    group: "password",
+    title: t("ory.settings.password.title"),
+    description: t("ory.settings.password.description")
+  ) %>
+
+  <%# TOTP section %>
+  <%= render Ory::Settings::TotpComponent.new(flow: @flow_container.flow) %>
+
+  <%# WebAuthn section %>
+  <%= render Ory::Settings::WebauthnComponent.new(flow: @flow_container.flow) %>
+
+  <%# Passkey section %>
+  <%= render Ory::Settings::PasskeyComponent.new(flow: @flow_container.flow) %>
+
+  <%# Recovery codes section %>
+  <%= render Ory::Settings::RecoveryCodesComponent.new(flow: @flow_container.flow) %>
+
+  <%# Social connections section %>
+  <%= render Ory::Settings::OidcComponent.new(flow: @flow_container.flow) %>
+</div>

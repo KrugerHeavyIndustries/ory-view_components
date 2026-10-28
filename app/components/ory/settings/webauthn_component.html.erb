@@ -1,0 +1,30 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-Settings__Section Ory-Settings__Section--webauthn" data-controller="ory-webauthn">
+  <% hidden_webauthn_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <div class="Ory-Settings__SectionContent">
+    <div class="Ory-Settings__SectionHeader">
+      <h3 class="Ory-Settings__SectionTitle"><%= I18n.t("ory.settings.webauthn.title") %></h3>
+      <p class="Ory-Settings__SectionDescription"><%= I18n.t("ory.settings.webauthn.description") %></p>
+    </div>
+
+    <% if name_node %>
+      <%= render Ory::NodeComponent.new(node: name_node) %>
+    <% end %>
+
+    <% if trigger_node %>
+      <div class="Ory-Settings__WebauthnTrigger">
+        <%= render Ory::NodeComponent.new(node: trigger_node) %>
+      </div>
+    <% end %>
+
+    <% if remove_nodes.any? %>
+      <div class="Ory-Settings__WebauthnDevices">
+        <% remove_nodes.each do |node| %>
+          <%= render Ory::NodeComponent.new(node: node) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-Form">
+  <% hidden_form_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <% content_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <% if submit_form_nodes.any? %>
+    <div class="Ory-Form__Actions">
+      <% submit_form_nodes.each do |node| %>
+        <%= render Ory::NodeComponent.new(node: node) %>
+      <% end %>
+    </div>
+  <% end %>
+</form>

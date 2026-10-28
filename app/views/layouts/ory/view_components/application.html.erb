@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= content_for?(:title) ? yield(:title) : "Authentication" %></title>
+  <%= stylesheet_link_tag "ory_view_components", media: "all" %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+</head>
+<body class="Ory-Layout">
+  <main class="Ory-Layout__Main">
+    <%= yield %>
+  </main>
+</body>
+</html>

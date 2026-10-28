@@ -1,0 +1,24 @@
+<div class="Ory-Node Ory-Node--input">
+  <% if label_text %>
+    <label class="Ory-Node__Label" for="<%= input_name %>">
+      <%= label_text %>
+    </label>
+  <% end %>
+
+  <input
+    id="<%= input_name %>"
+    name="<%= input_name %>"
+    type="<%= input_type %>"
+    <% if input_value %>value="<%= input_value %>"<% end %>
+    <% if required? %>required<% end %>
+    <% if disabled? %>disabled<% end %>
+    <% if autocomplete %>autocomplete="<%= autocomplete %>"<% end %>
+    <% if pattern %>pattern="<%= pattern %>"<% end %>
+    <% if maxlength %>maxlength="<%= maxlength %>"<% end %>
+    class="<%= input_classes %>"
+  />
+
+  <% messages.each do |message| %>
+    <%= render Ory::MessageComponent.new(message: message) %>
+  <% end %>
+</div>

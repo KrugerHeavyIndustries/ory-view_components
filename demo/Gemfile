@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "rails", ">= 7.1.0"
+gem "ory_view_components", path: ".."
+gem "propshaft"
+gem "puma"
+gem "json", "~> 2.3" # json 3.x breaks ActiveSupport::JSON.decode in Rails 8.1

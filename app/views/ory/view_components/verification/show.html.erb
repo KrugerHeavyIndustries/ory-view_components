@@ -1,0 +1,10 @@
+<% content_for(:title) { t("ory.verification.title") } %>
+
+<%= render Ory::CardComponent.new do |card| %>
+  <% card.with_header(title: t("ory.verification.title"), description: t("ory.verification.description")) %>
+
+  <% card.with_body do %>
+    <%= render Ory::MessagesComponent.new(messages: @flow_container.messages) %>
+    <%= render Ory::FormComponent.new(flow: @flow_container.flow) %>
+  <% end %>
+<% end %>

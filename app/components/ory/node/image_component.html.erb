@@ -1,0 +1,14 @@
+<div class="Ory-Node Ory-Node--image">
+  <% if label_text %>
+    <span class="Ory-Node__Label"><%= label_text %></span>
+  <% end %>
+
+  <img
+    id="<%= image_id %>"
+    src="<%= image_src %>"
+    width="<%= image_width %>"
+    height="<%= image_height %>"
+    class="Ory-Node__Image"
+    alt="<%= label_text || "" %>"
+  />
+</div>

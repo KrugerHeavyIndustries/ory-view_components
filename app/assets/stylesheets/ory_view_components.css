@@ -1,0 +1,556 @@
+/* Ory ViewComponents — Vanilla CSS with BEM naming */
+/* Override CSS custom properties to theme the components */
+
+:root {
+  --ory-color-primary: #2563eb;
+  --ory-color-primary-hover: #1d4ed8;
+  --ory-color-primary-text: #ffffff;
+  --ory-color-error: #dc2626;
+  --ory-color-error-bg: #fef2f2;
+  --ory-color-success: #16a34a;
+  --ory-color-success-bg: #f0fdf4;
+  --ory-color-info: #2563eb;
+  --ory-color-info-bg: #eff6ff;
+  --ory-color-text: #111827;
+  --ory-color-text-secondary: #6b7280;
+  --ory-color-border: #d1d5db;
+  --ory-color-border-focus: #2563eb;
+  --ory-color-bg: #ffffff;
+  --ory-color-bg-secondary: #f9fafb;
+  --ory-font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ory-font-size-sm: 0.875rem;
+  --ory-font-size-base: 1rem;
+  --ory-font-size-lg: 1.25rem;
+  --ory-font-size-xl: 1.5rem;
+  --ory-border-radius: 0.5rem;
+  --ory-border-radius-sm: 0.375rem;
+  --ory-spacing-xs: 0.25rem;
+  --ory-spacing-sm: 0.5rem;
+  --ory-spacing-md: 1rem;
+  --ory-spacing-lg: 1.5rem;
+  --ory-spacing-xl: 2rem;
+  --ory-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --ory-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --ory-transition: 150ms ease;
+}
+
+/* Layout */
+
+.Ory-Layout {
+  font-family: var(--ory-font-family);
+  color: var(--ory-color-text);
+  background-color: var(--ory-color-bg-secondary);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.Ory-Layout__Main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--ory-spacing-xl);
+  min-height: 100vh;
+}
+
+/* Card */
+
+.Ory-Card {
+  background-color: var(--ory-color-bg);
+  border: 1px solid var(--ory-color-border);
+  border-radius: var(--ory-border-radius);
+  box-shadow: var(--ory-shadow-lg);
+  width: 100%;
+  max-width: 28rem;
+  margin-top: var(--ory-spacing-xl);
+}
+
+.Ory-Card__Header {
+  padding: var(--ory-spacing-lg);
+  border-bottom: 1px solid var(--ory-color-border);
+}
+
+.Ory-Card__Title {
+  margin: 0;
+  font-size: var(--ory-font-size-xl);
+  font-weight: 600;
+  color: var(--ory-color-text);
+}
+
+.Ory-Card__Description {
+  margin: var(--ory-spacing-xs) 0 0;
+  font-size: var(--ory-font-size-sm);
+  color: var(--ory-color-text-secondary);
+}
+
+.Ory-Card__Body {
+  padding: var(--ory-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-lg);
+}
+
+.Ory-Card__Footer {
+  padding: var(--ory-spacing-md) var(--ory-spacing-lg);
+  border-top: 1px solid var(--ory-color-border);
+  text-align: center;
+}
+
+.Ory-Card__FooterText {
+  margin: 0;
+  font-size: var(--ory-font-size-sm);
+  color: var(--ory-color-text-secondary);
+}
+
+.Ory-Card__FooterLink {
+  color: var(--ory-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.Ory-Card__FooterLink:hover {
+  text-decoration: underline;
+}
+
+/* Form */
+
+.Ory-Form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-md);
+}
+
+.Ory-Form__Actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-sm);
+  margin-top: var(--ory-spacing-sm);
+}
+
+/* Node: Input */
+
+.Ory-Node--input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-xs);
+}
+
+.Ory-Node__Label {
+  display: block;
+  font-size: var(--ory-font-size-sm);
+  font-weight: 500;
+  color: var(--ory-color-text);
+}
+
+.Ory-Node__Input {
+  display: block;
+  width: 100%;
+  padding: var(--ory-spacing-sm) var(--ory-spacing-md);
+  font-size: var(--ory-font-size-base);
+  font-family: var(--ory-font-family);
+  color: var(--ory-color-text);
+  background-color: var(--ory-color-bg);
+  border: 1px solid var(--ory-color-border);
+  border-radius: var(--ory-border-radius-sm);
+  transition: border-color var(--ory-transition), box-shadow var(--ory-transition);
+  box-sizing: border-box;
+}
+
+.Ory-Node__Input:focus {
+  outline: none;
+  border-color: var(--ory-color-border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.Ory-Node__Input--error {
+  border-color: var(--ory-color-error);
+}
+
+.Ory-Node__Input--error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.Ory-Node__Input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Node: Button */
+
+.Ory-Node--button {
+  display: flex;
+}
+
+.Ory-Node__Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--ory-spacing-sm) var(--ory-spacing-md);
+  font-size: var(--ory-font-size-base);
+  font-weight: 500;
+  font-family: var(--ory-font-family);
+  border-radius: var(--ory-border-radius-sm);
+  border: 1px solid var(--ory-color-border);
+  background-color: var(--ory-color-bg);
+  color: var(--ory-color-text);
+  cursor: pointer;
+  transition: background-color var(--ory-transition), border-color var(--ory-transition);
+}
+
+.Ory-Node__Button:hover {
+  background-color: var(--ory-color-bg-secondary);
+}
+
+.Ory-Node__Button--primary {
+  background-color: var(--ory-color-primary);
+  border-color: var(--ory-color-primary);
+  color: var(--ory-color-primary-text);
+}
+
+.Ory-Node__Button--primary:hover {
+  background-color: var(--ory-color-primary-hover);
+  border-color: var(--ory-color-primary-hover);
+}
+
+.Ory-Node__Button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Node: Checkbox */
+
+.Ory-Node--checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-xs);
+}
+
+.Ory-Node__CheckboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--ory-spacing-sm);
+  font-size: var(--ory-font-size-sm);
+  cursor: pointer;
+}
+
+.Ory-Node__Checkbox {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--ory-color-primary);
+}
+
+.Ory-Node__CheckboxText {
+  color: var(--ory-color-text);
+}
+
+/* Node: Text */
+
+.Ory-Node--text {
+  padding: var(--ory-spacing-sm);
+  background-color: var(--ory-color-bg-secondary);
+  border-radius: var(--ory-border-radius-sm);
+}
+
+.Ory-Node__Text {
+  margin: 0;
+  font-size: var(--ory-font-size-sm);
+  color: var(--ory-color-text);
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* Node: Image */
+
+.Ory-Node--image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ory-spacing-sm);
+}
+
+.Ory-Node__Image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ory-border-radius-sm);
+}
+
+/* Node: Anchor */
+
+.Ory-Node--anchor {
+  display: flex;
+}
+
+.Ory-Node__Anchor {
+  color: var(--ory-color-primary);
+  text-decoration: none;
+  font-size: var(--ory-font-size-sm);
+  font-weight: 500;
+}
+
+.Ory-Node__Anchor:hover {
+  text-decoration: underline;
+}
+
+/* Node: Select */
+
+.Ory-Node--select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-xs);
+}
+
+.Ory-Node__Select {
+  display: block;
+  width: 100%;
+  padding: var(--ory-spacing-sm) var(--ory-spacing-md);
+  font-size: var(--ory-font-size-base);
+  font-family: var(--ory-font-family);
+  color: var(--ory-color-text);
+  background-color: var(--ory-color-bg);
+  border: 1px solid var(--ory-color-border);
+  border-radius: var(--ory-border-radius-sm);
+  box-sizing: border-box;
+}
+
+.Ory-Node__Select:focus {
+  outline: none;
+  border-color: var(--ory-color-border-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.Ory-Node__Select--error {
+  border-color: var(--ory-color-error);
+}
+
+/* Social Buttons */
+
+.Ory-SocialButtons__Form {
+  width: 100%;
+}
+
+.Ory-SocialButtons {
+  display: grid;
+  gap: var(--ory-spacing-sm);
+}
+
+.Ory-SocialButtons--cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.Ory-SocialButtons--cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.Ory-SocialButtons--cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.Ory-SocialButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ory-spacing-sm);
+  width: 100%;
+  padding: var(--ory-spacing-sm) var(--ory-spacing-md);
+  font-size: var(--ory-font-size-sm);
+  font-weight: 500;
+  font-family: var(--ory-font-family);
+  border: 1px solid var(--ory-color-border);
+  border-radius: var(--ory-border-radius-sm);
+  background-color: var(--ory-color-bg);
+  color: var(--ory-color-text);
+  cursor: pointer;
+  transition: background-color var(--ory-transition);
+}
+
+.Ory-SocialButton:hover {
+  background-color: var(--ory-color-bg-secondary);
+}
+
+.Ory-SocialButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.Ory-SocialButton__Label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Messages */
+
+.Ory-Messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-sm);
+}
+
+.Ory-Message {
+  padding: var(--ory-spacing-sm) var(--ory-spacing-md);
+  border-radius: var(--ory-border-radius-sm);
+  font-size: var(--ory-font-size-sm);
+}
+
+.Ory-Message--error {
+  background-color: var(--ory-color-error-bg);
+  color: var(--ory-color-error);
+  border: 1px solid var(--ory-color-error);
+}
+
+.Ory-Message--info {
+  background-color: var(--ory-color-info-bg);
+  color: var(--ory-color-info);
+  border: 1px solid var(--ory-color-info);
+}
+
+.Ory-Message--success {
+  background-color: var(--ory-color-success-bg);
+  color: var(--ory-color-success);
+  border: 1px solid var(--ory-color-success);
+}
+
+.Ory-Message__Text {
+  margin: 0;
+}
+
+/* Divider */
+
+.Ory-Divider {
+  display: flex;
+  align-items: center;
+  gap: var(--ory-spacing-md);
+}
+
+.Ory-Divider::before,
+.Ory-Divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--ory-color-border);
+}
+
+.Ory-Divider__Text {
+  font-size: var(--ory-font-size-sm);
+  color: var(--ory-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Settings */
+
+.Ory-Settings {
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-lg);
+}
+
+.Ory-Settings__Title {
+  font-size: var(--ory-font-size-xl);
+  font-weight: 600;
+  margin: 0;
+}
+
+.Ory-Settings__Section {
+  background-color: var(--ory-color-bg);
+  border: 1px solid var(--ory-color-border);
+  border-radius: var(--ory-border-radius);
+  box-shadow: var(--ory-shadow);
+  overflow: hidden;
+}
+
+.Ory-Settings__SectionContent {
+  padding: var(--ory-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-md);
+}
+
+.Ory-Settings__SectionHeader {
+  margin-bottom: var(--ory-spacing-sm);
+}
+
+.Ory-Settings__SectionTitle {
+  margin: 0;
+  font-size: var(--ory-font-size-lg);
+  font-weight: 600;
+}
+
+.Ory-Settings__SectionDescription {
+  margin: var(--ory-spacing-xs) 0 0;
+  font-size: var(--ory-font-size-sm);
+  color: var(--ory-color-text-secondary);
+}
+
+.Ory-Settings__SectionFooter {
+  padding: var(--ory-spacing-md) var(--ory-spacing-lg);
+  border-top: 1px solid var(--ory-color-border);
+  background-color: var(--ory-color-bg-secondary);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ory-spacing-sm);
+}
+
+/* Settings: TOTP */
+
+.Ory-Settings__TotpSetup {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--ory-spacing-lg);
+}
+
+.Ory-Settings__TotpQr {
+  background-color: var(--ory-color-bg);
+  border-radius: var(--ory-border-radius-sm);
+  overflow: hidden;
+}
+
+.Ory-Settings__TotpDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-md);
+}
+
+/* Settings: WebAuthn / Passkey */
+
+.Ory-Settings__WebauthnDevices,
+.Ory-Settings__PasskeyDevices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-sm);
+  margin-top: var(--ory-spacing-md);
+}
+
+/* Settings: Recovery Codes */
+
+.Ory-Settings__RecoveryCodes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ory-spacing-sm);
+}
+
+/* Settings: OIDC */
+
+.Ory-Settings__OidcProviders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ory-spacing-sm);
+}
+
+/* Error page */
+
+.Ory-Error {
+  padding: var(--ory-spacing-md);
+}
+
+.Ory-Error__Message {
+  margin: 0 0 var(--ory-spacing-md);
+  color: var(--ory-color-error);
+}
+
+.Ory-Error__Action {
+  margin: 0;
+}

@@ -1,0 +1,28 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-Settings__Section Ory-Settings__Section--recoveryCodes">
+  <% hidden_lookup_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <div class="Ory-Settings__SectionContent">
+    <div class="Ory-Settings__SectionHeader">
+      <h3 class="Ory-Settings__SectionTitle"><%= I18n.t("ory.settings.lookup_secret.title") %></h3>
+      <p class="Ory-Settings__SectionDescription"><%= I18n.t("ory.settings.lookup_secret.description") %></p>
+    </div>
+
+    <% if code_nodes.any? %>
+      <div class="Ory-Settings__RecoveryCodes">
+        <% code_nodes.each do |node| %>
+          <%= render Ory::NodeComponent.new(node: node) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if action_nodes.any? %>
+    <div class="Ory-Settings__SectionFooter">
+      <% action_nodes.each do |node| %>
+        <%= render Ory::NodeComponent.new(node: node) %>
+      <% end %>
+    </div>
+  <% end %>
+</form>

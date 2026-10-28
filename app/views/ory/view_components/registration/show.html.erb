@@ -1,0 +1,23 @@
+<% content_for(:title) { t("ory.registration.title") } %>
+
+<%= render Ory::CardComponent.new do |card| %>
+  <% card.with_header(title: t("ory.registration.title")) %>
+
+  <% card.with_body do %>
+    <%= render Ory::MessagesComponent.new(messages: @flow_container.messages) %>
+
+    <%= render Ory::SocialButtonsComponent.new(flow: @flow_container.flow) %>
+
+    <% if Ory::NodeHelper.has_social_nodes?(@flow_container.nodes) %>
+      <%= render Ory::DividerComponent.new %>
+    <% end %>
+
+    <%= render Ory::FormComponent.new(flow: @flow_container.flow, exclude_groups: %w[oidc saml]) %>
+  <% end %>
+
+  <% card.with_footer do %>
+    <p class="Ory-Card__FooterText">
+      <%= link_to t("ory.registration.login_link"), login_path, class: "Ory-Card__FooterLink" %>
+    </p>
+  <% end %>
+<% end %>

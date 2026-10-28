@@ -1,0 +1,11 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-SocialButtons__Form">
+  <% if csrf_node %>
+    <%= render Ory::NodeComponent.new(node: csrf_node) %>
+  <% end %>
+
+  <div class="Ory-SocialButtons <%= grid_class %>">
+    <% social_button_nodes.each do |node| %>
+      <%= render Ory::NodeComponent.new(node: node) %>
+    <% end %>
+  </div>
+</form>

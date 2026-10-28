@@ -1,0 +1,28 @@
+<div class="Ory-Node Ory-Node--select">
+  <% if label_text %>
+    <label class="Ory-Node__Label" for="<%= input_name %>">
+      <%= label_text %>
+    </label>
+  <% end %>
+
+  <select
+    id="<%= input_name %>"
+    name="<%= input_name %>"
+    <% if required? %>required<% end %>
+    <% if disabled? %>disabled<% end %>
+    class="<%= select_classes %>"
+  >
+    <% options.each do |option| %>
+      <option
+        value="<%= option.respond_to?(:value) ? option.value : option %>"
+        <% if (option.respond_to?(:value) ? option.value : option).to_s == current_value.to_s %>selected<% end %>
+      >
+        <%= option.respond_to?(:label) ? option.label : option %>
+      </option>
+    <% end %>
+  </select>
+
+  <% messages.each do |message| %>
+    <%= render Ory::MessageComponent.new(message: message) %>
+  <% end %>
+</div>

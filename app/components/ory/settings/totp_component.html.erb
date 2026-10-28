@@ -1,0 +1,42 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-Settings__Section Ory-Settings__Section--totp">
+  <% hidden_totp_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <div class="Ory-Settings__SectionContent">
+    <div class="Ory-Settings__SectionHeader">
+      <h3 class="Ory-Settings__SectionTitle"><%= I18n.t("ory.settings.totp.title") %></h3>
+      <p class="Ory-Settings__SectionDescription"><%= I18n.t("ory.settings.totp.description") %></p>
+    </div>
+
+    <% if linked? %>
+      <div class="Ory-Settings__TotpLinked">
+        <%= render Ory::NodeComponent.new(node: unlink_node) %>
+      </div>
+    <% else %>
+      <div class="Ory-Settings__TotpSetup">
+        <% if qr_node %>
+          <div class="Ory-Settings__TotpQr">
+            <%= render Ory::NodeComponent.new(node: qr_node) %>
+          </div>
+        <% end %>
+
+        <div class="Ory-Settings__TotpDetails">
+          <% if secret_node %>
+            <%= render Ory::NodeComponent.new(node: secret_node) %>
+          <% end %>
+
+          <% if code_node %>
+            <%= render Ory::NodeComponent.new(node: code_node) %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if method_node && !linked? %>
+    <div class="Ory-Settings__SectionFooter">
+      <%= render Ory::NodeComponent.new(node: method_node) %>
+    </div>
+  <% end %>
+</form>

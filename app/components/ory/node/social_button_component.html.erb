@@ -1,0 +1,9 @@
+<button
+  type="submit"
+  name="<%= button_name %>"
+  value="<%= provider %>"
+  <% if disabled? %>disabled<% end %>
+  class="Ory-SocialButton <%= provider_class %>"
+>
+  <span class="Ory-SocialButton__Label"><%= label_text %></span>
+</button>

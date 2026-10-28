@@ -1,0 +1,19 @@
+<% content_for(:title) { t("ory.error.title") } %>
+
+<%= render Ory::CardComponent.new do |card| %>
+  <% card.with_header(title: t("ory.error.title")) %>
+
+  <% card.with_body do %>
+    <% if @error %>
+      <div class="Ory-Error">
+        <p class="Ory-Error__Message"><%= @error.respond_to?(:error) ? @error.error&.message : @error.to_s %></p>
+      </div>
+    <% else %>
+      <p class="Ory-Error__Message">An unknown error occurred.</p>
+    <% end %>
+
+    <p class="Ory-Error__Action">
+      <%= link_to "Return to login", login_path, class: "Ory-Card__FooterLink" %>
+    </p>
+  <% end %>
+<% end %>

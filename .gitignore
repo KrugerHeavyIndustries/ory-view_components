@@ -1,0 +1,10 @@
+*.gem
+.bundle
+Gemfile.lock
+demo/Gemfile.lock
+demo/db/*.sqlite3
+demo/log/*
+demo/tmp/*
+node_modules/
+pkg/
+.byebug_history

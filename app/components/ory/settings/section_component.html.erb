@@ -1,0 +1,26 @@
+<form action="<%= form_action %>" method="<%= form_method %>" novalidate class="Ory-Settings__Section">
+  <% hidden_section_nodes.each do |node| %>
+    <%= render Ory::NodeComponent.new(node: node) %>
+  <% end %>
+
+  <div class="Ory-Settings__SectionContent">
+    <div class="Ory-Settings__SectionHeader">
+      <h3 class="Ory-Settings__SectionTitle"><%= @title %></h3>
+      <% if @description %>
+        <p class="Ory-Settings__SectionDescription"><%= @description %></p>
+      <% end %>
+    </div>
+
+    <% content_section_nodes.each do |node| %>
+      <%= render Ory::NodeComponent.new(node: node) %>
+    <% end %>
+  </div>
+
+  <% if submit_section_nodes.any? %>
+    <div class="Ory-Settings__SectionFooter">
+      <% submit_section_nodes.each do |node| %>
+        <%= render Ory::NodeComponent.new(node: node) %>
+      <% end %>
+    </div>
+  <% end %>
+</form>

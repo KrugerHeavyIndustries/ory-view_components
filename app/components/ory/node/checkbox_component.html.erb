@@ -1,0 +1,20 @@
+<div class="Ory-Node Ory-Node--checkbox">
+  <label class="Ory-Node__CheckboxLabel">
+    <input
+      type="checkbox"
+      name="<%= input_name %>"
+      value="true"
+      <% if checked? %>checked<% end %>
+      <% if required? %>required<% end %>
+      <% if disabled? %>disabled<% end %>
+      class="Ory-Node__Checkbox"
+    />
+    <% if label_text %>
+      <span class="Ory-Node__CheckboxText"><%= label_text %></span>
+    <% end %>
+  </label>
+
+  <% messages.each do |message| %>
+    <%= render Ory::MessageComponent.new(message: message) %>
+  <% end %>
+</div>

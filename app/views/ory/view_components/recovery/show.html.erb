@@ -1,0 +1,16 @@
+<% content_for(:title) { t("ory.recovery.title") } %>
+
+<%= render Ory::CardComponent.new do |card| %>
+  <% card.with_header(title: t("ory.recovery.title"), description: t("ory.recovery.description")) %>
+
+  <% card.with_body do %>
+    <%= render Ory::MessagesComponent.new(messages: @flow_container.messages) %>
+    <%= render Ory::FormComponent.new(flow: @flow_container.flow) %>
+  <% end %>
+
+  <% card.with_footer do %>
+    <p class="Ory-Card__FooterText">
+      <%= link_to t("ory.recovery.login_link"), login_path, class: "Ory-Card__FooterLink" %>
+    </p>
+  <% end %>
+<% end %>
