@@ -15,7 +15,7 @@ Leveraging both ViewComponents and the Ory "protocol" and workflows, Ory ViewCom
 
 ### Spin up a Kratos instance
 
-```
+```shell
 git clone https://github.com/ory/kratos.git
 cd kratos
 git checkout v26.2.0
@@ -24,6 +24,8 @@ docker compose -f quickstart.yml -f quickstart-standalone.yml up --force-recreat
 
 ### Run the Ory ViewComponents demo
 
+```shell
 cd demo/
 bundle install
 rails s
+```
