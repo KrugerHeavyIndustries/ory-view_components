@@ -551,6 +551,12 @@
   color: var(--ory-color-error);
 }
 
+.Ory-Error__Reason {
+  margin: 0 0 var(--ory-spacing-md);
+  font-size: var(--ory-font-size-sm);
+  color: var(--ory-color-text-secondary);
+}
+
 .Ory-Error__Action {
   margin: 0;
 }

@@ -1,10 +1,120 @@
-<h1>Ory ViewComponents Demo</h1>
-<nav>
-  <ul>
-    <li><%= link_to "Login", ory.login_path %></li>
-    <li><%= link_to "Registration", ory.registration_path %></li>
-    <li><%= link_to "Recovery", ory.recovery_path %></li>
-    <li><%= link_to "Settings", ory.settings_path %></li>
-    <li><%= link_to "Logout", ory.logout_path %></li>
-  </ul>
-</nav>
+<% content_for(:title) { "Ory ViewComponents Demo" } %>
+
+<style>
+  .Demo-Home { width: 100%; max-width: 40rem; }
+  .Demo-Home .Ory-Card { max-width: none; }
+  .Demo-Nav { display: flex; flex-wrap: wrap; gap: var(--ory-spacing-sm) var(--ory-spacing-lg); justify-content: center; margin: 0; padding: 0; list-style: none; }
+  .Demo-Section__Title { margin: 0 0 var(--ory-spacing-sm); font-size: var(--ory-font-size-base); font-weight: 600; }
+  .Demo-Details { display: grid; grid-template-columns: max-content 1fr; gap: var(--ory-spacing-xs) var(--ory-spacing-md); margin: 0; font-size: var(--ory-font-size-sm); }
+  .Demo-Details dt { color: var(--ory-color-text-secondary); }
+  .Demo-Details dd { margin: 0; overflow-wrap: anywhere; }
+  .Demo-List { margin: 0; padding-left: var(--ory-spacing-lg); font-size: var(--ory-font-size-sm); }
+  .Demo-Muted { color: var(--ory-color-text-secondary); }
+  .Demo-Raw summary { cursor: pointer; font-size: var(--ory-font-size-sm); font-weight: 500; }
+  .Demo-Raw pre { margin: var(--ory-spacing-sm) 0 0; padding: var(--ory-spacing-sm); overflow-x: auto; font-size: 0.75rem; background-color: var(--ory-color-bg-secondary); border-radius: var(--ory-border-radius-sm); }
+</style>
+
+<div class="Demo-Home">
+  <% if (session = current_ory_session) %>
+    <% identity = session.identity %>
+
+    <%= render Ory::CardComponent.new do |card| %>
+      <% card.with_header(title: "You're signed in", description: identity&.verifiable_addresses&.first&.value || identity&.id) %>
+
+      <% card.with_body do %>
+        <section>
+          <h2 class="Demo-Section__Title">Identity</h2>
+          <dl class="Demo-Details">
+            <dt>ID</dt><dd><code><%= identity&.id %></code></dd>
+            <dt>Schema</dt><dd><%= identity&.schema_id %></dd>
+            <dt>State</dt><dd><%= identity&.state %></dd>
+            <% flatten_traits(identity&.traits).each do |name, value| %>
+              <dt><%= name %></dt><dd><%= Array(value).join(", ") %></dd>
+            <% end %>
+          </dl>
+        </section>
+
+        <% if identity&.verifiable_addresses.present? %>
+          <section>
+            <h2 class="Demo-Section__Title">Addresses</h2>
+            <ul class="Demo-List">
+              <% identity.verifiable_addresses.each do |address| %>
+                <li>
+                  <%= address.value %>
+                  <span class="Demo-Muted">(<%= address.via %>, <%= address.verified ? "verified" : "not verified" %>)</span>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        <% end %>
+
+        <section>
+          <h2 class="Demo-Section__Title">Session</h2>
+          <dl class="Demo-Details">
+            <dt>ID</dt><dd><code><%= session.id %></code></dd>
+            <dt>Active</dt><dd><%= session.active ? "Yes" : "No" %></dd>
+            <dt>Assurance level</dt><dd><%= session.authenticator_assurance_level %></dd>
+            <dt>Authenticated</dt><dd><%= session_time(session.authenticated_at) %></dd>
+            <dt>Issued</dt><dd><%= session_time(session.issued_at) %></dd>
+            <dt>Expires</dt><dd><%= session_time(session.expires_at) %></dd>
+          </dl>
+        </section>
+
+        <% if session.authentication_methods.present? %>
+          <section>
+            <h2 class="Demo-Section__Title">Authentication methods</h2>
+            <ul class="Demo-List">
+              <% session.authentication_methods.each do |auth| %>
+                <li>
+                  <%= [auth.method, auth.provider].compact.join(" · ") %>
+                  <span class="Demo-Muted">(<%= auth.aal %>, <%= session_time(auth.completed_at) %>)</span>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        <% end %>
+
+        <% if session.devices.present? %>
+          <section>
+            <h2 class="Demo-Section__Title">Devices</h2>
+            <ul class="Demo-List">
+              <% session.devices.each do |device| %>
+                <li>
+                  <%= [device.ip_address, device.location].compact_blank.join(" · ") %>
+                  <div class="Demo-Muted"><%= device.user_agent %></div>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        <% end %>
+
+        <details class="Demo-Raw">
+          <summary>Raw session JSON</summary>
+          <pre><%= JSON.pretty_generate(session.to_hash) %></pre>
+        </details>
+      <% end %>
+
+      <% card.with_footer do %>
+        <ul class="Demo-Nav">
+          <li><%= link_to "Account settings", ory.settings_path, class: "Ory-Card__FooterLink" %></li>
+          <li><%= link_to "Verify account", ory.verification_path, class: "Ory-Card__FooterLink" %></li>
+          <li><%= link_to "Re-authenticate", ory.login_path(refresh: true), class: "Ory-Card__FooterLink" %></li>
+          <li><%= link_to "Log out", ory.logout_path, class: "Ory-Card__FooterLink" %></li>
+        </ul>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= render Ory::CardComponent.new do |card| %>
+      <% card.with_header(title: "Ory ViewComponents Demo", description: "You're not signed in.") %>
+
+      <% card.with_body do %>
+        <ul class="Demo-Nav">
+          <li><%= link_to "Sign in", ory.login_path, class: "Ory-Card__FooterLink" %></li>
+          <li><%= link_to "Create account", ory.registration_path, class: "Ory-Card__FooterLink" %></li>
+          <li><%= link_to "Recover account", ory.recovery_path, class: "Ory-Card__FooterLink" %></li>
+          <li><%= link_to "Verify account", ory.verification_path, class: "Ory-Card__FooterLink" %></li>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

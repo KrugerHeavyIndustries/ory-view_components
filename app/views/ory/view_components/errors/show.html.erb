@@ -4,9 +4,12 @@
   <% card.with_header(title: t("ory.error.title")) %>
 
   <% card.with_body do %>
-    <% if @error %>
+    <% if @error.present? %>
       <div class="Ory-Error">
-        <p class="Ory-Error__Message"><%= @error.respond_to?(:error) ? @error.error&.message : @error.to_s %></p>
+        <p class="Ory-Error__Message"><%= @error[:message].presence || "An unknown error occurred." %></p>
+        <% if @error[:reason].present? && @error[:reason] != @error[:message] %>
+          <p class="Ory-Error__Reason"><%= @error[:reason] %></p>
+        <% end %>
       </div>
     <% else %>
       <p class="Ory-Error__Message">An unknown error occurred.</p>
