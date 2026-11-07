@@ -29,3 +29,19 @@ cd demo/
 bundle install
 rails s
 ```
+
+## Customizing views
+
+Copy the default views and layout into your application:
+
+```sh
+bin/rails generate ory_view_components:views
+```
+
+Files in your application take priority over the engine's, matched by path. Delete any copies you don't change so they keep receiving updates from the gem.
+
+To change the markup of the components as well, add `--components`:
+
+```sh
+bin/rails generate ory_view_components:views --components
+```
