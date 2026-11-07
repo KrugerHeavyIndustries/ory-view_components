@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", ">= 7.1.0"
+gem "rails", "~> 8.1.4"
 gem "ory_view_components", path: ".."
 gem "propshaft"
 gem "puma"
